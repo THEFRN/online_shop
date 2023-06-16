@@ -1,0 +1,6 @@
+<h1>Log In</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <button type="submit">Log In</button>
+</form>
