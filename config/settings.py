@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third Party Apps
+    'allauth',
+    'allauth.account',
     'crispy_forms',
     'crispy_bootstrap4',
 
@@ -47,6 +49,8 @@ INSTALLED_APPS = [
     'accounts',
     'pages',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,6 +80,14 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+
+    'django.contrib.auth.backends.ModelBackend',
+    # Django-allauth
+    'allauth.account.auth_backends.AuthenticationBackend',
+
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
@@ -146,3 +158,14 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Crispy Forms Config
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Email Config
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Django-allauth Config
+ACCOUNT_SESSION_REMEMBER = True  # No radio "Remember me" --> anymore
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
