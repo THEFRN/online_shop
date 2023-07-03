@@ -12,6 +12,11 @@
     <title>{% block page_title %}{% endblock %}</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+    hello {{ user.email }}
+{% else %}
+    <a href="{% url 'account_login' %}">Login</a> | <a href="{% url 'account_signup' %}">Sign up</a>
+{% endif %}
 {% block content %}
 
 {% endblock %}

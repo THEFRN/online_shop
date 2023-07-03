@@ -50,8 +50,9 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
 
     # Local apps
-    'accounts',
-    'pages',
+    'accounts.apps.AccountsConfig',
+    'pages.apps.PagesConfig',
+    'products.apps.ProductsConfig'
 ]
 
 SITE_ID = 1
@@ -167,7 +168,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Django-allauth Config
-ACCOUNT_SESSION_REMEMBER = True  # No radio "Remember me" --> anymore
+ACCOUNT_SESSION_REMEMBER = True  # No radio "Remember me" --> Would be omitted!
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
