@@ -15,4 +15,4 @@ class Products(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        pass
+        return reverse('product_detail', args=[self.pk])
