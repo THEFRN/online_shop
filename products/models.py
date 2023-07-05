@@ -19,15 +19,25 @@ class Products(models.Model):
         return reverse('product_detail', args=[self.pk])
 
 
-class Comments(models.Model):
+class Comment(models.Model):
+    PRODUCT_STARS = [
+        ('1', 'Very Bad'),
+        ('2', 'Bad'),
+        ('3', 'Normal'),
+        ('4', 'Good'),
+        ('5', 'Perfect'),
+    ]
     text = models.TextField()
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments')
+    stars = models.CharField(max_length=10, choices=PRODUCT_STARS)
+
     datetime_created = models.DateTimeField(auto_now_add=True)
-    is_active = models.BooleanField(default=True)
-    recommend = models.BooleanField(default=True)
+    datetime_modified = models.DateTimeField(auto_now=True)
+
+    is_active = models.BooleanField(default=True)  # Shows the activation status of the comment
 
     def __str__(self):
-        return self.user  # Returning the user Value and showing it in the Admin Page
+        return self.author  # Returning the user Value and showing it in the Admin Page
 
 
