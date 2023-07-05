@@ -19,7 +19,7 @@ class Products(models.Model):
         return reverse('product_detail', args=[self.pk])
 
 
-class Comment(models.Model):
+class Comments(models.Model):
     text = models.TextField()
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
@@ -28,6 +28,6 @@ class Comment(models.Model):
     recommend = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.user
+        return self.user  # Returning the user Value and showing it in the Admin Page
 
 
