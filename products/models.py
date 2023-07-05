@@ -28,8 +28,8 @@ class Comment(models.Model):
         ('5', 'Perfect'),
     ]
     text = models.TextField()
-    product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments')
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='comment')
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comment')
     stars = models.CharField(max_length=10, choices=PRODUCT_STARS)
 
     datetime_created = models.DateTimeField(auto_now_add=True)
@@ -38,6 +38,12 @@ class Comment(models.Model):
     is_active = models.BooleanField(default=True)  # Shows the activation status of the comment
 
     def __str__(self):
-        return self.author  # Returning the user Value and showing it in the Admin Page
+        return self.text  # Returning the user Value and showing it in the Admin Page
 
+
+    def get_absolute_url(self):
+        return reverse("product_detail", args=[self.product.id])
+
+    
+    
 

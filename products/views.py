@@ -13,8 +13,3 @@ class ProductDetailView(generic.DetailView):
     model = Products
     template_name = 'products/products_detail.html'
     context_object_name = 'product'
-
-
-
-
-
